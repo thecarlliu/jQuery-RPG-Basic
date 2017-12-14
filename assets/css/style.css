@@ -1,0 +1,148 @@
+
+h2 {
+	text-align: right;
+}
+
+#charRey {
+	position: absolute;
+	top: 60px;
+	left: 20px;
+	width: 120px;
+	height: 80px;
+	background-color: white;
+	border-width: 4px;
+	border-style: solid;
+	border-color: green;
+}
+#charLuke {
+	position: absolute;
+	top: 60px;
+	left: 160px;
+	width: 120px;
+	height: 80px;
+	background-color: white;
+	border-width: 4px;
+	border-style: solid;
+	border-color: green;
+}
+#charKylo {
+	position: absolute;
+	top: 60px;
+	left: 300px;
+	width: 120px;
+	height: 80px;
+	background-color: white;
+	border-width: 4px;
+	border-style: solid;
+	border-color: green;
+}
+#charFinn {
+	position: absolute;
+	top: 60px;
+	left: 440px;
+	width: 120px;
+	height: 80px;
+	background-color: white;
+	border-width: 4px;
+	border-style: solid;
+	border-color: green;
+}
+
+#nameRey {
+	font-size: 8px;
+	position: absolute;
+	top: 0px;
+	left: 45px;
+}
+#nameLuke {
+	font-size: 8px;
+	position: absolute;
+	top: 0px;
+	left: 45px;
+}
+#nameKylo {
+	font-size: 8px;
+	position: absolute;
+	top: 0px;
+	left: 45px;
+}
+#nameFinn {
+	font-size: 8px;
+	position: absolute;
+	top: 0px;
+	left: 45px;
+}
+
+#imgRey {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 90px;
+	height: 50px;
+}
+#imgLuke {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 90px;
+	height: 50px;
+}
+#imgKylo {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 90px;
+	height: 50px;
+}
+#imgFinn {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 90px;
+	height: 50px;
+}
+
+#hpRey {
+	font-size: 8px;
+	position: absolute;
+	bottom: 0px;
+	left: 45px;
+}
+#hpLuke {
+	font-size: 8px;
+	position: absolute;
+	bottom: 0px;
+	left: 45px;
+}
+#hpKylo {
+	font-size: 8px;
+	position: absolute;
+	bottom: 0px;
+	left: 45px;
+}
+#hpFinn {
+	font-size: 8px;
+	position: absolute;
+	bottom: 0px;
+	left: 45px;
+}
+
+.yourCharacter {
+	position: absolute;
+	background-color: white;
+}
+
+.enemiesAvailableToAttack {
+	position: absolute;
+	background-color: white;
+}
+
+.fightSection {
+	position: absolute;
+	background-color: white;
+}
+
+.defender {
+	position: absolute;
+	background-color: white;
+}
