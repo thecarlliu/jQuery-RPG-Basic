@@ -4,6 +4,7 @@ var opponent;
 var timesAttacked = 1;
 var enemiesLeft = 3;
 
+//playable Characters
 var rey = $("<div>", {
 	id: "charRey",
 	attack: 15,
@@ -28,7 +29,7 @@ var finn = $("<div>", {
 	counter: 20,
 	hp: 160
 });
-
+//name display for each char
 var reyName = $("<div>", {
 	id: "nameRey",
 	text: "Rey"
@@ -45,7 +46,7 @@ var finnName = $("<div>", {
 	id: "nameFinn",
 	text: "Finn"
 });
-
+//img for each char
 var reyImg = $("<img>", {
 	id: "imgRey",
 	src: "../jQuery-RPG-Basic/assets/images/rey.jpeg"
@@ -62,7 +63,7 @@ var finnImg = $("<img>", {
 	id: "imgFinn",
 	src: "../jQuery-RPG-Basic/assets/images/finn.jpg"
 });
-
+//hp display for each char
 var reyHP = $("<div>", {
 	id: "hpRey",
 	text: "120"
@@ -79,8 +80,6 @@ var finnHP = $("<div>", {
 	id: "hpFinn",
 	text: "160"
 });
-
-var charList = [rey, luke, kylo, finn];
 
 reyName.appendTo(rey);
 reyImg.appendTo(rey);
@@ -103,6 +102,8 @@ luke.appendTo($(".gameScreen"));
 kylo.appendTo($(".gameScreen"));
 finn.appendTo($(".gameScreen"));
 
+//click functions for each char
+//tells the game what to do with a char and the others based on when it was clicked (gamePhase)
 rey.click(function () {
 	if (gamePhase == 0) {
 		rey.appendTo($(".yourCharacter"));
@@ -164,6 +165,8 @@ finn.click(function () {
 	}
 });
 
+//click function for our attack button
+//only does something once a player has chosen their character and a defender to attack
 var attackBtn = $("#attack-button");
 attackBtn.click( function () {
 	if (gamePhase == 2) {
@@ -175,6 +178,7 @@ attackBtn.click( function () {
 	}
 });
 
+//calculates the dmg dealt to the enemyChar and changes hp displays appropriately
 function playerAttack(yourChar, enemyChar) {
 	console.log($(enemyChar).attr("hp"));
 	var previousHP = $(enemyChar).attr("hp");
@@ -197,6 +201,7 @@ function playerAttack(yourChar, enemyChar) {
 	timesAttacked++;
 }
 
+//calculates dmg received by the player from the enemy's counter attack and changes the hp displays appropriately
 function counterAttack(yourChar, enemyChar) {
 	console.log($(yourChar).attr("hp"));
 	var previousHP = $(yourChar).attr("hp");
@@ -218,6 +223,8 @@ function counterAttack(yourChar, enemyChar) {
 	console.log($(yourChar).attr("hp"));
 }
 
+//checks the players hp and enemy hp, decides if the player has lost or if the enemy is beaten
+//if all enemies are beaten the player wins
 function checkResult(yourChar, enemyChar) {
 	if ($(enemyChar).attr("hp") <= 0 && $(yourChar).attr("hp") > 0) {
 		enemiesLeft--;
