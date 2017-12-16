@@ -1,11 +1,17 @@
-
+.background {
+	background-image: url("../images/bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 1000px;
+	height: 800px;
+}
 h2 {
 	text-align: right;
 }
 
 #charRey {
 	position: absolute;
-	top: 60px;
+	top: 20px;
 	left: 20px;
 	width: 120px;
 	height: 80px;
@@ -16,7 +22,7 @@ h2 {
 }
 #charLuke {
 	position: absolute;
-	top: 60px;
+	top: 20px;
 	left: 160px;
 	width: 120px;
 	height: 80px;
@@ -27,7 +33,7 @@ h2 {
 }
 #charKylo {
 	position: absolute;
-	top: 60px;
+	top: 20px;
 	left: 300px;
 	width: 120px;
 	height: 80px;
@@ -38,7 +44,7 @@ h2 {
 }
 #charFinn {
 	position: absolute;
-	top: 60px;
+	top: 20px;
 	left: 440px;
 	width: 120px;
 	height: 80px;
@@ -130,19 +136,33 @@ h2 {
 .yourCharacter {
 	position: absolute;
 	background-color: white;
+	height: 20px;
+	top: 150px;
 }
 
 .enemiesAvailableToAttack {
 	position: absolute;
 	background-color: white;
+	height: 20px;
+	top: 250px;
 }
 
 .fightSection {
 	position: absolute;
 	background-color: white;
+	height: 20px;
+	top: 350px;
 }
 
 .defender {
 	position: absolute;
 	background-color: white;
+	height: 20px;
+	top: 450px;
+}
+
+#attack-button {
+	color: black;
+	background-color: grey;
+	border-color: black;
 }

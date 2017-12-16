@@ -1,16 +1,32 @@
 var gamePhase = 0;
+var player;
+var opponent;
+var timesAttacked = 1;
+var enemiesLeft = 3;
 
 var rey = $("<div>", {
-	id: "charRey"
+	id: "charRey",
+	attack: 15,
+	counter: 15,
+	hp: 120
 });
 var luke = $("<div>", {
-	id: "charLuke"
+	id: "charLuke",
+	attack: 25,
+	counter: 30,
+	hp: 100
 });
 var kylo = $("<div>", {
-	id: "charKylo"
+	id: "charKylo",
+	attack: 30,
+	counter: 10,
+	hp: 140
 });
 var finn = $("<div>", {
-	id: "charFinn"
+	id: "charFinn",
+	attack: 10,
+	counter: 20,
+	hp: 160
 });
 
 var reyName = $("<div>", {
@@ -57,11 +73,11 @@ var lukeHP = $("<div>", {
 });
 var kyloHP = $("<div>", {
 	id: "hpKylo",
-	text: "150"
+	text: "140"
 });
 var finnHP = $("<div>", {
 	id: "hpFinn",
-	text: "180"
+	text: "160"
 });
 
 var charList = [rey, luke, kylo, finn];
@@ -94,10 +110,12 @@ rey.click(function () {
 		kylo.appendTo($(".enemiesAvailableToAttack"));
 		finn.appendTo($(".enemiesAvailableToAttack"));
 		gamePhase = 1;
+		player = rey;
 	}
 	else if (gamePhase == 1) {
 		rey.appendTo($(".defender"));
 		gamePhase = 2;
+		opponent = rey;
 	}
 });
 luke.click(function () {
@@ -107,10 +125,12 @@ luke.click(function () {
 		finn.appendTo($(".enemiesAvailableToAttack"));
 		rey.appendTo($(".enemiesAvailableToAttack"));
 		gamePhase = 1;
+		player = luke;
 	}
 	else if (gamePhase == 1) {
 		luke.appendTo($(".defender"));
 		gamePhase = 2;
+		opponent = luke;
 	}
 });
 kylo.click(function () {
@@ -120,10 +140,12 @@ kylo.click(function () {
 		rey.appendTo($(".enemiesAvailableToAttack"));
 		luke.appendTo($(".enemiesAvailableToAttack"));
 		gamePhase = 1;
+		player = kylo;
 	}
 	else if (gamePhase == 1) {
 		kylo.appendTo($(".defender"));
 		gamePhase = 2;
+		opponent = kylo;
 	}
 });
 finn.click(function () {
@@ -133,28 +155,82 @@ finn.click(function () {
 		luke.appendTo($(".enemiesAvailableToAttack"));
 		kylo.appendTo($(".enemiesAvailableToAttack"));
 		gamePhase = 1;
+		player = finn;
 	}
 	else if (gamePhase == 1) {
 		finn.appendTo($(".defender"));
 		gamePhase = 2;
+		opponent = finn;
 	}
 });
 
-if(gamePhase == 2) {
-	var attackBtn = $("<button>", {
-	id: "attack-button"
-	});
-	attackBtn.appendTo($(".gameScreen"));
-	attackBtn.click( function () {
-		//get player = Your Character, defender = Defender
-		//playerAttack(player, defender); do damage to the enemy and scale damage for the next attack
-		//counterAttack(defender, player); receive damage from enemy based on their attack stat
-	});
-	//if enemy hp <= 0, remove current defender and set gamePhase = 1, choose new defender.
-	//if player hp <= 0, player loses.
+var attackBtn = $("#attack-button");
+attackBtn.click( function () {
+	if (gamePhase == 2) {
+		console.log(player);
+		console.log(opponent);
+		playerAttack(player, opponent);
+		counterAttack(player, opponent);
+		checkResult(player, opponent);
+	}
+});
+
+function playerAttack(yourChar, enemyChar) {
+	console.log($(enemyChar).attr("hp"));
+	var previousHP = $(enemyChar).attr("hp");
+	var damageDealt = $(yourChar).attr("attack");
+	var newHP = previousHP - damageDealt * timesAttacked;
+	$(enemyChar).attr("hp", newHP);
+	if (enemyChar == rey) {
+		reyHP.text(newHP);
+	}
+	else if (enemyChar == luke) {
+		lukeHP.text(newHP);
+	}
+	else if (enemyChar == kylo) {
+		kyloHP.text(newHP);
+	}
+	else if (enemyChar == finn) {
+		finnHP.text(newHP);
+	}
+	console.log($(enemyChar).attr("hp"));
+	timesAttacked++;
 }
 
-//if gamePhase == 1, and no enemiesAvailableToAttack, player wins
+function counterAttack(yourChar, enemyChar) {
+	console.log($(yourChar).attr("hp"));
+	var previousHP = $(yourChar).attr("hp");
+	var damageReceived = $(enemyChar).attr("counter");
+	var newHP = previousHP - damageReceived;
+	$(yourChar).attr("hp", newHP);
+	if (yourChar == rey) {
+		reyHP.text(newHP);
+	}
+	else if (yourChar == luke) {
+		lukeHP.text(newHP);
+	}
+	else if (yourChar == kylo) {
+		kyloHP.text(newHP);
+	}
+	else if (yourChar == finn) {
+		finnHP.text(newHP);
+	}
+	console.log($(yourChar).attr("hp"));
+}
+
+function checkResult(yourChar, enemyChar) {
+	if ($(enemyChar).attr("hp") <= 0 && $(yourChar).attr("hp") > 0) {
+		enemiesLeft--;
+		$(enemyChar).remove();
+		gamePhase = 1;
+		if (enemiesLeft == 0) {
+			alert("No enemies left to battle! You win!");
+		}
+	}
+	else if ($(yourChar).attr("hp") <= 0) {
+		alert("Your character has lost all its hp! You lose!");
+	}
+}
 
 
 
